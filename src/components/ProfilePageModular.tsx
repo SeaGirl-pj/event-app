@@ -374,10 +374,10 @@ export function ProfilePageModular({ onNavigate }: ProfilePageModularProps) {
                             <Icon className="w-4 h-4 md:w-5 md:h-5" />
                           </div>
                         </div>
-                        <h4 className="text-[10px] mb-1 group-hover:text-[#FF7A33] transition-colors">
+                        <h4 className="text-[8px] mb-1 group-hover:text-[#FF7A33] transition-colors">
                           {stat.label}
                         </h4>
-                        <p className="text-[10px] text-gray-600 line-clamp-2">
+                        <p className="text-[8px] text-gray-600 line-clamp-2">
                           {stat.value}
                         </p>
                       </div>
