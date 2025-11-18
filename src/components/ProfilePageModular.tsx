@@ -294,13 +294,13 @@ export function ProfilePageModular({ onNavigate }: ProfilePageModularProps) {
             <div className="flex flex-col md:flex-row md:items-end md:justify-between -mt-16 mb-6">
               <div className="flex items-end gap-4 mb-4 md:mb-0">
                 <Avatar className="w-32 h-32 border-4 border-white shadow-lg cursor-pointer hover:scale-105 transition-transform">
-                  <AvatarFallback className="bg-gradient-to-br from-[#FF7A33] to-[#1D6FD8] text-white text-lg md:text-2xl lg:text-3xl">
+                  <AvatarFallback className="bg-gradient-to-br from-[#FF7A33] to-[#1D6FD8] text-white text-base md:text-xl lg:text-2xl">
                     JD
                   </AvatarFallback>
                 </Avatar>
                 <div className="mb-2">
-                  <h1 className="mt-6 md:mt-8 mb-1 text-base md:text-lg lg:text-xl">John Doe</h1>
-                  <div className="flex flex-wrap gap-2 md:gap-3 text-gray-600 text-xs md:text-sm">
+                  <h1 className="mt-12 md:mt-8 mb-1 text-sm md:text-base lg:text-lg">John Doe</h1>
+                  <div className="flex flex-wrap gap-2 md:gap-3 text-gray-600 text-xs">
                     <div className="flex items-center gap-1.5 md:gap-2">
                       <Briefcase className="w-3.5 h-3.5 md:w-4 md:h-4" />
                       <span>Software Engineer</span>
@@ -313,11 +313,11 @@ export function ProfilePageModular({ onNavigate }: ProfilePageModularProps) {
                 </div>
               </div>
               <div className="flex gap-2">
-                <Button variant="outline" size="sm" className="text-xs md:text-sm">
+                <Button variant="outline" size="sm" className="text-xs">
                   <Settings className="w-3.5 h-3.5 md:w-4 md:h-4 mr-1.5 md:mr-2" />
                   Settings
                 </Button>
-                <Button className="bg-gradient-to-r from-[#FF7A33] to-[#FF9966] text-white hover:from-[#FF6A23] hover:to-[#FF8856] text-xs md:text-sm" size="sm">
+                <Button className="bg-gradient-to-r from-[#FF7A33] to-[#FF9966] text-white hover:from-[#FF6A23] hover:to-[#FF8856] text-xs" size="sm">
                   <Edit className="w-3.5 h-3.5 md:w-4 md:h-4 mr-1.5 md:mr-2" />
                   Edit Profile
                 </Button>
@@ -334,9 +334,9 @@ export function ProfilePageModular({ onNavigate }: ProfilePageModularProps) {
                 <div className="flex items-center justify-between mb-2">
                   <div className="flex items-center gap-1.5 md:gap-2">
                     <Zap className="w-4 h-4 md:w-5 md:h-5 text-[#FF7A33]" />
-                    <span className="text-xs md:text-sm">Profile Completeness</span>
+                    <span className="text-xs">Profile Completeness</span>
                   </div>
-                  <span className="text-[#FF7A33] text-xs md:text-sm font-semibold">{profileCompletion}%</span>
+                  <span className="text-[#FF7A33] text-xs font-semibold">{profileCompletion}%</span>
                 </div>
                 <div className="mt-2 mb-2">
                   <Progress 
@@ -344,7 +344,7 @@ export function ProfilePageModular({ onNavigate }: ProfilePageModularProps) {
                     className="h-2 md:h-2.5 w-full"
                   />
                 </div>
-                <p className="text-xs md:text-sm text-gray-600">
+                <p className="text-xs text-gray-600">
                   {profileCompletion < 100 
                     ? "Add your skills and networking goals to complete your profile"
                     : "Your profile is complete! Keep it updated for better connections."
@@ -374,7 +374,7 @@ export function ProfilePageModular({ onNavigate }: ProfilePageModularProps) {
                             <Icon className="w-4 h-4 md:w-5 md:h-5" />
                           </div>
                         </div>
-                        <h4 className="text-xs md:text-sm mb-1 group-hover:text-[#FF7A33] transition-colors">
+                        <h4 className="text-xs mb-1 group-hover:text-[#FF7A33] transition-colors">
                           {stat.label}
                         </h4>
                         <p className="text-xs text-gray-600 line-clamp-2">
@@ -402,8 +402,8 @@ export function ProfilePageModular({ onNavigate }: ProfilePageModularProps) {
                 <Sparkles className="w-5 h-5 md:w-6 md:h-6" />
               </div>
               <div className="flex-1">
-                <h4 className="mb-1 text-xs md:text-sm">Get AI Insights</h4>
-                <p className="text-xs md:text-sm text-gray-600">
+                <h4 className="mb-1 text-xs">Get AI Insights</h4>
+                <p className="text-xs text-gray-600">
                   Personalized profile recommendations
                 </p>
               </div>
