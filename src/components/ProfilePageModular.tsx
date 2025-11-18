@@ -363,7 +363,7 @@ export function ProfilePageModular({ onNavigate }: ProfilePageModularProps) {
                   return (
                     <Card
                       key={index}
-                      className="flex-1 min-w-[25%] p-2 md:p-4 hover:shadow-lg transition-all cursor-pointer group relative overflow-hidden"
+                      className="flex-1 min-w-[7rem] md:min-w-[25%] p-2 md:p-4 hover:shadow-lg transition-all cursor-pointer group relative overflow-hidden"
                     >
                       {/* Hover gradient effect */}
                       <div className="absolute inset-0 bg-gradient-to-br from-[#FF7A33]/5 to-[#1D6FD8]/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
@@ -374,10 +374,10 @@ export function ProfilePageModular({ onNavigate }: ProfilePageModularProps) {
                             <Icon className="w-4 h-4 md:w-5 md:h-5" />
                           </div>
                         </div>
-                        <h4 className="text-xs mb-1 group-hover:text-[#FF7A33] transition-colors">
+                        <h4 className="text-[10px] mb-1 group-hover:text-[#FF7A33] transition-colors">
                           {stat.label}
                         </h4>
-                        <p className="text-xs text-gray-600 line-clamp-2">
+                        <p className="text-[10px] text-gray-600 line-clamp-2">
                           {stat.value}
                         </p>
                       </div>
