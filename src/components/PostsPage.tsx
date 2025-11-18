@@ -191,27 +191,27 @@ export function PostsPage({ onNavigate }: PostsPageProps) {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-4 md:py-8">
         {/* Header */}
-        <div className="flex items-center justify-between mb-8">
+        <div className="flex items-center justify-between mb-4 md:mb-8">
           <div>
-            <h1 className="mb-2">Posts</h1>
-            <p className="text-gray-600">
+            <h1 className="mb-2 text-lg md:text-xl lg:text-2xl">Posts</h1>
+            <p className="text-gray-600 text-xs md:text-sm">
               Share your event experiences and connect with other attendees
             </p>
           </div>
           <Dialog open={showCreatePost} onOpenChange={setShowCreatePost}>
             <DialogTrigger asChild>
-              <Button className="bg-gradient-to-r from-[#FF7A33] to-[#FF9966] text-white hover:from-[#FF6A23] hover:to-[#FF8856]">
-                <Plus className="w-4 h-4 mr-2" />
+              <Button className="bg-gradient-to-r from-[#FF7A33] to-[#FF9966] text-white hover:from-[#FF6A23] hover:to-[#FF8856] text-xs md:text-sm" size="sm">
+                <Plus className="w-3.5 h-3.5 md:w-4 md:h-4 mr-1.5 md:mr-2" />
                 Create Post
               </Button>
             </DialogTrigger>
-            <DialogContent className="sm:max-w-[600px]">
+            <DialogContent className="sm:max-w-[600px] p-4 md:p-6">
               <DialogHeader>
-                <DialogTitle>Create New Post</DialogTitle>
+                <DialogTitle className="text-sm md:text-base">Create New Post</DialogTitle>
               </DialogHeader>
-              <div className="space-y-4 mt-4">
+              <div className="space-y-3 md:space-y-4 mt-3 md:mt-4">
                 {/* Event Selection */}
                 <div>
                   <label className="text-sm mb-2 block">Select Event</label>
@@ -231,8 +231,8 @@ export function PostsPage({ onNavigate }: PostsPageProps) {
 
                 {/* Image Upload */}
                 <div>
-                  <label className="text-sm mb-2 block">Upload Photo</label>
-                  <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center hover:border-[#FF7A33] transition-colors cursor-pointer">
+                  <label className="text-xs md:text-sm mb-2 block">Upload Photo</label>
+                  <div className="border-2 border-dashed border-gray-300 rounded-lg p-4 md:p-8 text-center hover:border-[#FF7A33] transition-colors cursor-pointer">
                     <input
                       type="file"
                       accept="image/*"
@@ -245,15 +245,15 @@ export function PostsPage({ onNavigate }: PostsPageProps) {
                         <ImageWithFallback
                           src={imagePreview}
                           alt="Preview"
-                          className="w-full h-48 object-cover rounded-lg"
+                          className="w-full h-32 md:h-48 object-cover rounded-lg"
                         />
                       ) : (
                         <>
-                          <ImageIcon className="w-12 h-12 text-gray-400 mx-auto mb-2" />
-                          <p className="text-gray-600">
+                          <ImageIcon className="w-8 h-8 md:w-12 md:h-12 text-gray-400 mx-auto mb-2" />
+                          <p className="text-gray-600 text-xs md:text-sm">
                             Click to upload an image
                           </p>
-                          <p className="text-sm text-gray-400 mt-1">
+                          <p className="text-xs text-gray-400 mt-1">
                             PNG, JPG up to 10MB
                           </p>
                         </>
@@ -264,12 +264,12 @@ export function PostsPage({ onNavigate }: PostsPageProps) {
 
                 {/* Caption */}
                 <div>
-                  <label className="text-sm mb-2 block">Caption</label>
+                  <label className="text-xs md:text-sm mb-2 block">Caption</label>
                   <Textarea
                     placeholder="Share your experience..."
                     value={newPostCaption}
                     onChange={(e) => setNewPostCaption(e.target.value)}
-                    className="min-h-[120px]"
+                    className="min-h-[80px] md:min-h-[120px] text-xs md:text-sm"
                   />
                 </div>
 
@@ -278,13 +278,16 @@ export function PostsPage({ onNavigate }: PostsPageProps) {
                   <Button
                     variant="outline"
                     onClick={() => setShowCreatePost(false)}
+                    size="sm"
+                    className="text-xs md:text-sm"
                   >
                     Cancel
                   </Button>
                   <Button
                     onClick={handleCreatePost}
                     disabled={!newPostCaption || !selectedEvent || !imagePreview}
-                    className="bg-gradient-to-r from-[#FF7A33] to-[#FF9966] text-white hover:from-[#FF6A23] hover:to-[#FF8856]"
+                    className="bg-gradient-to-r from-[#FF7A33] to-[#FF9966] text-white hover:from-[#FF6A23] hover:to-[#FF8856] text-xs md:text-sm"
+                    size="sm"
                   >
                     Post
                   </Button>
@@ -295,21 +298,21 @@ export function PostsPage({ onNavigate }: PostsPageProps) {
         </div>
 
         {/* Posts Feed */}
-        <div className="space-y-6">
+        <div className="space-y-3 md:space-y-6">
           {posts.map((post) => (
             <Card key={post.id} className="overflow-hidden">
               {/* Post Header */}
-              <div className="p-4 flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                  <Avatar>
-                    <AvatarFallback className="bg-gradient-to-br from-[#FF7A33] to-[#1D6FD8] text-white">
+              <div className="p-3 md:p-4 flex items-center justify-between">
+                <div className="flex items-center gap-2 md:gap-3">
+                  <Avatar className="w-8 h-8 md:w-10 md:h-10">
+                    <AvatarFallback className="bg-gradient-to-br from-[#FF7A33] to-[#1D6FD8] text-white text-xs">
                       {post.userInitials}
                     </AvatarFallback>
                   </Avatar>
                   <div>
-                    <p className="font-medium">{post.userName}</p>
-                    <div className="flex items-center gap-2 text-sm text-gray-600">
-                      <Calendar className="w-3 h-3" />
+                    <p className="font-medium text-xs md:text-sm">{post.userName}</p>
+                    <div className="flex items-center gap-1.5 md:gap-2 text-xs md:text-sm text-gray-600">
+                      <Calendar className="w-2.5 h-2.5 md:w-3 md:h-3" />
                       <span>{post.eventName}</span>
                       <span>•</span>
                       <span>{post.timestamp}</span>
@@ -341,7 +344,7 @@ export function PostsPage({ onNavigate }: PostsPageProps) {
               </div>
 
               {/* Post Image */}
-              <div className="w-full h-[400px] bg-gray-100">
+              <div className="w-full h-[250px] md:h-[400px] bg-gray-100">
                 <ImageWithFallback
                   src={post.image}
                   alt={post.eventName}
@@ -350,32 +353,32 @@ export function PostsPage({ onNavigate }: PostsPageProps) {
               </div>
 
               {/* Post Content */}
-              <div className="p-4">
+              <div className="p-3 md:p-4">
                 {/* Actions */}
-                <div className="flex items-center gap-4 mb-3">
-                  <Button variant="ghost" size="sm" className="gap-2">
-                    <Heart className="w-5 h-5" />
+                <div className="flex items-center gap-3 md:gap-4 mb-2 md:mb-3">
+                  <Button variant="ghost" size="sm" className="gap-1.5 md:gap-2 text-xs md:text-sm">
+                    <Heart className="w-4 h-4 md:w-5 md:h-5" />
                     {post.likes}
                   </Button>
-                  <Button variant="ghost" size="sm" className="gap-2">
-                    <MessageCircle className="w-5 h-5" />
+                  <Button variant="ghost" size="sm" className="gap-1.5 md:gap-2 text-xs md:text-sm">
+                    <MessageCircle className="w-4 h-4 md:w-5 md:h-5" />
                     {post.comments}
                   </Button>
-                  <Button variant="ghost" size="sm" className="gap-2 ml-auto">
-                    <Share2 className="w-5 h-5" />
+                  <Button variant="ghost" size="sm" className="gap-1.5 md:gap-2 ml-auto text-xs md:text-sm">
+                    <Share2 className="w-4 h-4 md:w-5 md:h-5" />
                   </Button>
                 </div>
 
                 {/* Caption */}
-                <p className="text-gray-800">{post.caption}</p>
+                <p className="text-gray-800 text-xs md:text-sm">{post.caption}</p>
 
                 {/* Event Tag */}
                 <Badge
                   variant="outline"
-                  className="mt-3 cursor-pointer hover:bg-gray-100"
+                  className="mt-2 md:mt-3 cursor-pointer hover:bg-gray-100 text-xs"
                   onClick={() => onNavigate && onNavigate("event-detail", post.eventId)}
                 >
-                  <Calendar className="w-3 h-3 mr-1" />
+                  <Calendar className="w-2.5 h-2.5 md:w-3 md:h-3 mr-1" />
                   {post.eventName}
                 </Badge>
               </div>

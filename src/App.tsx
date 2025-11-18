@@ -111,7 +111,7 @@ export default function App() {
         />
       )}
       {currentPage === "connection-matchmaking" && <ConnectionMatchmakingPage onBack={() => setCurrentPage("profile")} />}
-      {currentPage === "event-calendar" && <EventCalendarPage onBack={() => setCurrentPage("profile")} />}
+      {currentPage === "event-calendar" && <EventCalendarPage onBack={() => setCurrentPage("events")} />}
       {currentPage === "profile-analysis" && <ProfileAnalysisPage onBack={() => setCurrentPage("profile")} />}
       {currentPage === "skills-interests" && <SkillsInterestsPage onBack={() => setCurrentPage("profile")} />}
       {currentPage === "saved-events" && <SavedEventsPage onBack={() => setCurrentPage("profile")} />}

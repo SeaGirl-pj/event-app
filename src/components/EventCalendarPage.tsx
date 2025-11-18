@@ -106,7 +106,7 @@ export function EventCalendarPage({ onBack }: EventCalendarPageProps) {
         <div className="mb-8">
           <Button variant="ghost" onClick={onBack} className="mb-4">
             <ArrowLeft className="w-4 h-4 mr-2" />
-            Back to Profile
+            Back to Events
           </Button>
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">

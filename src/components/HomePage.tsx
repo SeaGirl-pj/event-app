@@ -116,26 +116,26 @@ export function HomePage({ onNavigate }: HomePageProps) {
     <div className="min-h-screen bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Quick Actions */}
-        <div className="mb-10">
-          <h2 className="mb-6">Quick Actions</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="mb-6 md:mb-10">
+          <h2 className="mb-3 md:mb-6 text-lg md:text-xl">Quick Actions</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4">
             {quickActions.map((action, index) => {
               const Icon = action.icon;
               return (
                 <Card
                   key={index}
-                  className="p-6 cursor-pointer hover:shadow-lg transition-all group border-gray-200"
+                  className="p-3 md:p-6 cursor-pointer hover:shadow-lg transition-all group border-gray-200"
                   onClick={action.action}
                 >
                   <div
-                    className={`w-12 h-12 rounded-xl bg-gradient-to-br ${action.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}
+                    className={`w-10 h-10 md:w-12 md:h-12 rounded-xl bg-gradient-to-br ${action.color} flex items-center justify-center mb-3 md:mb-4 group-hover:scale-110 transition-transform`}
                   >
-                    <Icon className="w-6 h-6 text-white" />
+                    <Icon className="w-5 h-5 md:w-6 md:h-6 text-white" />
                   </div>
-                  <h3 className="mb-2 group-hover:text-[#FF7A33] transition-colors">
+                  <h3 className="mb-2 text-sm md:text-base group-hover:text-[#FF7A33] transition-colors">
                     {action.title}
                   </h3>
-                  <p className="text-gray-600">{action.description}</p>
+                  <p className="text-gray-600 text-xs md:text-sm">{action.description}</p>
                 </Card>
               );
             })}
@@ -143,45 +143,46 @@ export function HomePage({ onNavigate }: HomePageProps) {
         </div>
 
         {/* AI Insights Banner */}
-        <Card className="mb-10 p-6 bg-gradient-to-r from-[#1D6FD8]/5 to-[#FF7A33]/5 border-[#FF7A33]/20">
-          <div className="flex items-start gap-4">
-            <div className="w-12 h-12 bg-gradient-to-br from-[#FF7A33] to-[#1D6FD8] rounded-xl flex items-center justify-center flex-shrink-0">
-              <Zap className="w-6 h-6 text-white" />
+        <Card className="mb-6 md:mb-10 p-3 md:p-6 bg-gradient-to-r from-[#1D6FD8]/5 to-[#FF7A33]/5 border-[#FF7A33]/20">
+          <div className="flex items-start gap-3 md:gap-4">
+            <div className="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-[#FF7A33] to-[#1D6FD8] rounded-xl flex items-center justify-center flex-shrink-0">
+              <Zap className="w-5 h-5 md:w-6 md:h-6 text-white" />
             </div>
             <div className="flex-1">
               <div className="flex items-center gap-2 mb-2">
-                <h3>AI Insight</h3>
-                <Badge className="bg-[#FF7A33] text-white border-0">New</Badge>
+                <h3 className="text-sm md:text-base">AI Insight</h3>
+                <Badge className="bg-[#FF7A33] text-white border-0 text-xs">New</Badge>
               </div>
-              <p className="text-gray-700 mb-3">
+              <p className="text-gray-700 mb-3 text-xs md:text-sm">
                 Based on your profile, you're most active on weekdays and prefer
                 technology events. We found 3 upcoming tech workshops that match your
                 interests in AI and leadership!
               </p>
               <Button
                 onClick={() => onNavigate("events")}
-                className="bg-gradient-to-r from-[#FF7A33] to-[#FF9966] text-white hover:from-[#FF6A23] hover:to-[#FF8856]"
+                className="bg-gradient-to-r from-[#FF7A33] to-[#FF9966] text-white hover:from-[#FF6A23] hover:to-[#FF8856] py-2 px-4 md:py-2 md:px-4 text-xs md:text-sm"
+                size="sm"
               >
                 View Recommendations
-                <ArrowRight className="w-4 h-4 ml-2" />
+                <ArrowRight className="w-3 h-3 md:w-4 md:h-4 ml-2" />
               </Button>
             </div>
           </div>
         </Card>
 
         {/* Recommended Events */}
-        <div className="mb-10">
-          <div className="flex items-center justify-between mb-6">
-            <div className="flex items-center gap-3">
-              <Target className="w-6 h-6 text-[#FF7A33]" />
-              <h2>Recommended For You</h2>
+        <div className="mb-6 md:mb-10">
+          <div className="flex items-center justify-between mb-3 md:mb-6">
+            <div className="flex items-center gap-2 md:gap-3">
+              <Target className="w-5 h-5 md:w-6 md:h-6 text-[#FF7A33]" />
+              <h2 className="text-lg md:text-xl">Recommended For You</h2>
             </div>
-            <Button variant="ghost" onClick={() => onNavigate("events")}>
+            <Button variant="ghost" onClick={() => onNavigate("events")} size="sm" className="text-xs md:text-sm">
               See All
-              <ArrowRight className="w-4 h-4 ml-2" />
+              <ArrowRight className="w-3 h-3 md:w-4 md:h-4 ml-2" />
             </Button>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6">
             {recommendedEvents.map((event) => (
               <EventCard
                 key={event.id}
@@ -194,17 +195,17 @@ export function HomePage({ onNavigate }: HomePageProps) {
 
         {/* Trending Events */}
         <div>
-          <div className="flex items-center justify-between mb-6">
-            <div className="flex items-center gap-3">
-              <TrendingUp className="w-6 h-6 text-[#1D6FD8]" />
-              <h2>Trending Events</h2>
+          <div className="flex items-center justify-between mb-3 md:mb-6">
+            <div className="flex items-center gap-2 md:gap-3">
+              <TrendingUp className="w-5 h-5 md:w-6 md:h-6 text-[#1D6FD8]" />
+              <h2 className="text-lg md:text-xl">Trending Events</h2>
             </div>
-            <Button variant="ghost" onClick={() => onNavigate("events")}>
+            <Button variant="ghost" onClick={() => onNavigate("events")} size="sm" className="text-xs md:text-sm">
               See All
-              <ArrowRight className="w-4 h-4 ml-2" />
+              <ArrowRight className="w-3 h-3 md:w-4 md:h-4 ml-2" />
             </Button>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-6">
             {trendingEvents.map((event) => (
               <EventCard
                 key={event.id}

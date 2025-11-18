@@ -30,7 +30,114 @@ interface ProfilePageModularProps {
   onNavigate?: (page: string) => void;
 }
 
+// Calculate profile completion percentage based on completed sections
+function calculateProfileCompletion(): number {
+  // Mock profile data - in a real app, this would come from state/API
+  // You can replace this with actual profile data from props or context
+  const profileData = {
+    // Personal Information
+    personalInfo: {
+      fullName: "John Doe",
+      age: "28",
+      gender: "Male",
+      dateOfBirth: "1996-05-15",
+      country: "United States",
+      city: "San Francisco",
+    },
+    // Social & Professional Links
+    socialLinks: {
+      linkedin: "linkedin.com/in/johndoe",
+      instagram: "@johndoe",
+      website: "johndoe.dev",
+      github: "github.com/johndoe",
+      twitter: "@johndoe",
+    },
+    // Professional Background
+    professionalBackground: {
+      education: "Bachelor's in Computer Science, Stanford University (2018)",
+      workExperience: "Senior Software Engineer at Tech Corp (2020 - Present)",
+      skills: "React, TypeScript, Node.js, Python, AWS",
+      certifications: "AWS Certified Solutions Architect, Google Cloud Professional",
+    },
+    // Contact Information
+    contactInfo: {
+      email: "john.doe@example.com",
+      phone: "+1 (555) 123-4567",
+      address: "123 Main Street, San Francisco, CA 94102",
+    },
+    // Interests & Topics
+    interests: {
+      userInterests: "Technology, AI, Machine Learning, Web Development",
+      hobbies: "Photography, Hiking, Reading, Gaming",
+      categories: "Tech, Innovation, Startups, Leadership",
+    },
+    // Event Preferences
+    eventPreferences: {
+      preferredEventTypes: "Conferences, Workshops, Networking Events",
+      preferredLocation: "San Francisco Bay Area",
+      preferredTime: "Weekends, Evening",
+      engagementLevel: "Active",
+    },
+  };
+
+  // Check each section completion
+  const sections = [
+    // Personal Information (20% weight)
+    {
+      weight: 20,
+      isComplete: !!(
+        profileData.personalInfo.fullName &&
+        profileData.personalInfo.age &&
+        profileData.personalInfo.city
+      ),
+    },
+    // Social & Professional Links (15% weight)
+    {
+      weight: 15,
+      isComplete: !!(
+        profileData.socialLinks.linkedin || profileData.socialLinks.website
+      ),
+    },
+    // Professional Background (25% weight)
+    {
+      weight: 25,
+      isComplete: !!(
+        profileData.professionalBackground.education ||
+        profileData.professionalBackground.workExperience ||
+        profileData.professionalBackground.skills
+      ),
+    },
+    // Contact Information (15% weight)
+    {
+      weight: 15,
+      isComplete: !!(profileData.contactInfo.email || profileData.contactInfo.phone),
+    },
+    // Interests & Topics (15% weight)
+    {
+      weight: 15,
+      isComplete: !!(
+        profileData.interests.userInterests || profileData.interests.categories
+      ),
+    },
+    // Event Preferences (10% weight)
+    {
+      weight: 10,
+      isComplete: !!(profileData.eventPreferences.preferredEventTypes),
+    },
+  ];
+
+  // Calculate total completion
+  const totalCompletion = sections.reduce((total, section) => {
+    return total + (section.isComplete ? section.weight : 0);
+  }, 0);
+
+  return Math.round(totalCompletion);
+}
+
 export function ProfilePageModular({ onNavigate }: ProfilePageModularProps) {
+  // Calculate profile completion
+  const profileCompletion = calculateProfileCompletion();
+
   const profileSections = [
     {
       id: "social-links",
@@ -187,53 +294,61 @@ export function ProfilePageModular({ onNavigate }: ProfilePageModularProps) {
             <div className="flex flex-col md:flex-row md:items-end md:justify-between -mt-16 mb-6">
               <div className="flex items-end gap-4 mb-4 md:mb-0">
                 <Avatar className="w-32 h-32 border-4 border-white shadow-lg cursor-pointer hover:scale-105 transition-transform">
-                  <AvatarFallback className="bg-gradient-to-br from-[#FF7A33] to-[#1D6FD8] text-white text-3xl">
+                  <AvatarFallback className="bg-gradient-to-br from-[#FF7A33] to-[#1D6FD8] text-white text-lg md:text-2xl lg:text-3xl">
                     JD
                   </AvatarFallback>
                 </Avatar>
                 <div className="mb-2">
-                  <h1 className="mb-1">John Doe</h1>
-                  <div className="flex flex-wrap gap-3 text-gray-600">
-                    <div className="flex items-center gap-2">
-                      <Briefcase className="w-4 h-4" />
+                  <h1 className="mb-1 text-base md:text-lg lg:text-xl">John Doe</h1>
+                  <div className="flex flex-wrap gap-2 md:gap-3 text-gray-600 text-xs md:text-sm">
+                    <div className="flex items-center gap-1.5 md:gap-2">
+                      <Briefcase className="w-3.5 h-3.5 md:w-4 md:h-4" />
                       <span>Software Engineer</span>
                     </div>
-                    <div className="flex items-center gap-2">
-                      <MapPin className="w-4 h-4" />
+                    <div className="flex items-center gap-1.5 md:gap-2">
+                      <MapPin className="w-3.5 h-3.5 md:w-4 md:h-4" />
                       <span>San Francisco, CA</span>
                     </div>
                   </div>
                 </div>
               </div>
               <div className="flex gap-2">
-                <Button variant="outline">
-                  <Settings className="w-4 h-4 mr-2" />
+                <Button variant="outline" size="sm" className="text-xs md:text-sm">
+                  <Settings className="w-3.5 h-3.5 md:w-4 md:h-4 mr-1.5 md:mr-2" />
                   Settings
                 </Button>
-                <Button className="bg-gradient-to-r from-[#FF7A33] to-[#FF9966] text-white hover:from-[#FF6A23] hover:to-[#FF8856]">
-                  <Edit className="w-4 h-4 mr-2" />
+                <Button className="bg-gradient-to-r from-[#FF7A33] to-[#FF9966] text-white hover:from-[#FF6A23] hover:to-[#FF8856] text-xs md:text-sm" size="sm">
+                  <Edit className="w-3.5 h-3.5 md:w-4 md:h-4 mr-1.5 md:mr-2" />
                   Edit Profile
                 </Button>
               </div>
             </div>
 
             {/* Profile Completeness and Stats Row */}
-            <div className="flex flex-col md:flex-row gap-4">
+            <div className="flex flex-col md:flex-row gap-3 md:gap-4">
               {/* Profile Completeness - Reduced Width */}
               <Card 
-                className="flex-1 p-4 bg-gradient-to-r from-[#FF7A33]/5 to-[#1D6FD8]/5 border-[#FF7A33]/20 cursor-pointer hover:shadow-md transition-shadow"
+                className="flex-1 p-3 md:p-4 bg-gradient-to-r from-[#FF7A33]/5 to-[#1D6FD8]/5 border-[#FF7A33]/20 cursor-pointer hover:shadow-md transition-shadow"
                 onClick={() => onNavigate && onNavigate("profile-details")}
               >
                 <div className="flex items-center justify-between mb-2">
-                  <div className="flex items-center gap-2">
-                    <Zap className="w-5 h-5 text-[#FF7A33]" />
-                    <span>Profile Completeness</span>
+                  <div className="flex items-center gap-1.5 md:gap-2">
+                    <Zap className="w-4 h-4 md:w-5 md:h-5 text-[#FF7A33]" />
+                    <span className="text-xs md:text-sm">Profile Completeness</span>
                   </div>
-                  <span className="text-[#FF7A33]">85%</span>
+                  <span className="text-[#FF7A33] text-xs md:text-sm font-semibold">{profileCompletion}%</span>
                 </div>
-                <Progress value={85} className="h-2 mb-2" />
-                <p className="text-sm text-gray-600">
-                  Add your skills and networking goals to complete your profile
+                <div className="mt-2 mb-2">
+                  <Progress 
+                    value={profileCompletion} 
+                    className="h-2 md:h-2.5 w-full"
+                  />
+                </div>
+                <p className="text-xs md:text-sm text-gray-600">
+                  {profileCompletion < 100 
+                    ? "Add your skills and networking goals to complete your profile"
+                    : "Your profile is complete! Keep it updated for better connections."
+                  }
                 </p>
               </Card>
 
@@ -248,18 +363,18 @@ export function ProfilePageModular({ onNavigate }: ProfilePageModularProps) {
                   return (
                     <Card
                       key={index}
-                      className="flex-1 min-w-[25%] p-4 hover:shadow-lg transition-all cursor-pointer group relative overflow-hidden"
+                      className="flex-1 min-w-[25%] p-2 md:p-4 hover:shadow-lg transition-all cursor-pointer group relative overflow-hidden"
                     >
                       {/* Hover gradient effect */}
                       <div className="absolute inset-0 bg-gradient-to-br from-[#FF7A33]/5 to-[#1D6FD8]/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                       
                       <div className="relative">
-                        <div className="flex items-start justify-between mb-3">
-                          <div className={`w-10 h-10 ${bgColor} rounded-lg flex items-center justify-center ${stat.color} group-hover:scale-110 transition-transform`}>
-                            <Icon className="w-5 h-5" />
+                        <div className="flex items-start justify-between mb-2 md:mb-3">
+                          <div className={`w-8 h-8 md:w-10 md:h-10 ${bgColor} rounded-lg flex items-center justify-center ${stat.color} group-hover:scale-110 transition-transform`}>
+                            <Icon className="w-4 h-4 md:w-5 md:h-5" />
                           </div>
                         </div>
-                        <h4 className="text-sm mb-1 group-hover:text-[#FF7A33] transition-colors">
+                        <h4 className="text-xs md:text-sm mb-1 group-hover:text-[#FF7A33] transition-colors">
                           {stat.label}
                         </h4>
                         <p className="text-xs text-gray-600 line-clamp-2">
@@ -277,22 +392,22 @@ export function ProfilePageModular({ onNavigate }: ProfilePageModularProps) {
         
 
         {/* Quick Actions */}
-        <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="mt-4 md:mt-8 grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4">
           <Card
-            className="p-6 bg-gradient-to-br from-[#FF7A33]/10 to-[#FF9966]/10 border-[#FF7A33]/20 hover:shadow-lg transition-shadow cursor-pointer group"
+            className="p-3 md:p-6 bg-gradient-to-br from-[#FF7A33]/10 to-[#FF9966]/10 border-[#FF7A33]/20 hover:shadow-lg transition-shadow cursor-pointer group"
             onClick={() => onNavigate && onNavigate("ai-insights")}
           >
-            <div className="flex items-center gap-4">
-              <div className="w-12 h-12 bg-gradient-to-br from-[#FF7A33] to-[#FF9966] rounded-xl flex items-center justify-center text-white group-hover:scale-110 transition-transform">
-                <Sparkles className="w-6 h-6" />
+            <div className="flex items-center gap-3 md:gap-4">
+              <div className="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-[#FF7A33] to-[#FF9966] rounded-xl flex items-center justify-center text-white group-hover:scale-110 transition-transform">
+                <Sparkles className="w-5 h-5 md:w-6 md:h-6" />
               </div>
               <div className="flex-1">
-                <h4 className="mb-1">Get AI Insights</h4>
-                <p className="text-sm text-gray-600">
+                <h4 className="mb-1 text-xs md:text-sm">Get AI Insights</h4>
+                <p className="text-xs md:text-sm text-gray-600">
                   Personalized profile recommendations
                 </p>
               </div>
-              <ChevronRight className="w-5 h-5 text-gray-400" />
+              <ChevronRight className="w-4 h-4 md:w-5 md:h-5 text-gray-400" />
             </div>
           </Card>
 

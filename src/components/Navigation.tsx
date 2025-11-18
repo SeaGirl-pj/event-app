@@ -39,7 +39,7 @@ export function Navigation({ currentPage, onNavigate, onLogout }: NavigationProp
             <div className="w-10 h-10 bg-gradient-to-br from-[#FF7A33] to-[#1D6FD8] rounded-lg flex items-center justify-center">
               <Calendar className="w-6 h-6 text-white" />
             </div>
-            <span className="text-xl hidden sm:block">EventConnect</span>
+            <span className="text-base md:text-xl hidden sm:block">EventConnect</span>
           </div>
 
           {/* Search Bar - Desktop */}
@@ -55,7 +55,7 @@ export function Navigation({ currentPage, onNavigate, onLogout }: NavigationProp
           </div>
 
           {/* Navigation Items */}
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-3 md:gap-6">
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center gap-1">
               {navItems.map((item) => {
@@ -65,13 +65,13 @@ export function Navigation({ currentPage, onNavigate, onLogout }: NavigationProp
                   <button
                     key={item.id}
                     onClick={() => onNavigate(item.id)}
-                    className={`relative flex items-center gap-2 px-4 py-2 rounded-lg transition-colors ${
+                    className={`relative flex items-center gap-2 px-3 md:px-4 py-1.5 md:py-2 rounded-lg transition-colors text-sm ${
                       isActive
                         ? "bg-gradient-to-r from-[#FF7A33]/10 to-[#1D6FD8]/10 text-[#FF7A33]"
                         : "text-gray-600 hover:bg-gray-100"
                     }`}
                   >
-                    <Icon className="w-5 h-5" />
+                    <Icon className="w-4 h-4 md:w-5 md:h-5" />
                     <span>{item.label}</span>
                     {item.badge && item.badge > 0 && (
                       <Badge className="absolute -top-1 -right-1 h-5 min-w-5 flex items-center justify-center bg-[#FF7A33] border-0 text-white p-0 px-1.5">
@@ -131,7 +131,7 @@ export function Navigation({ currentPage, onNavigate, onLogout }: NavigationProp
         </div>
 
         {/* Mobile Navigation */}
-        <div className="md:hidden flex justify-around border-t pt-2 pb-3">
+        <div className="md:hidden flex justify-around border-t pt-2 pb-2">
           {navItems.map((item) => {
             const Icon = item.icon;
             const isActive = currentPage === item.id;
@@ -139,11 +139,11 @@ export function Navigation({ currentPage, onNavigate, onLogout }: NavigationProp
               <button
                 key={item.id}
                 onClick={() => onNavigate(item.id)}
-                className={`relative flex flex-col items-center gap-1 px-3 py-2 rounded-lg transition-colors ${
+                className={`relative flex flex-col items-center gap-0.5 px-2 py-1.5 rounded-lg transition-colors ${
                   isActive ? "text-[#FF7A33]" : "text-gray-600"
                 }`}
               >
-                <Icon className="w-5 h-5" />
+                <Icon className="w-4 h-4" />
                 <span className="text-xs">{item.label}</span>
                 {item.badge && item.badge > 0 && (
                   <Badge className="absolute top-0 right-0 h-4 min-w-4 flex items-center justify-center bg-[#FF7A33] border-0 text-white p-0 px-1 text-xs">
