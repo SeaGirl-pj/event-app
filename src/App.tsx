@@ -19,6 +19,7 @@ import { EventInsightsPage } from "./components/EventInsightsPage";
 import { Toaster } from "./components/ui/sonner";
 import { ProfileDetailsPage } from "./components/ProfileDetailsPage";
 import { AIInsightsPage } from "./components/AIInsightsPage";
+import { AIEventFinderResultsPage } from "./components/AIEventFinderResultsPage";
 import AiEventFinderButton from "./components/AiEventFinderButton";
 
 type AppState = "login" | "signup" | "app";
@@ -38,7 +39,8 @@ type AppPage =
   | "ai-recommendations"
   | "event-insights"
   | "profile-details"
-  | "ai-insights";
+  | "ai-insights"
+  | "ai-event-finder";
 
 export default function App() {
   const [appState, setAppState] = useState<AppState>("login");
@@ -123,6 +125,12 @@ export default function App() {
       {currentPage === "ai-insights" && (
         <AIInsightsPage
           onBack={() => setCurrentPage("profile")}
+          onNavigate={handleNavigate}
+        />
+      )}
+      {currentPage === "ai-event-finder" && (
+        <AIEventFinderResultsPage
+          onBack={() => setCurrentPage("events")}
           onNavigate={handleNavigate}
         />
       )}
