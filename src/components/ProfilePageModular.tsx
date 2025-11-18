@@ -299,7 +299,7 @@ export function ProfilePageModular({ onNavigate }: ProfilePageModularProps) {
                   </AvatarFallback>
                 </Avatar>
                 <div className="mb-2">
-                  <h1 className="mt-2 md:mt-4 mb-1 text-base md:text-lg lg:text-xl">John Doe</h1>
+                  <h1 className="mt-6 md:mt-8 mb-1 text-base md:text-lg lg:text-xl">John Doe</h1>
                   <div className="flex flex-wrap gap-2 md:gap-3 text-gray-600 text-xs md:text-sm">
                     <div className="flex items-center gap-1.5 md:gap-2">
                       <Briefcase className="w-3.5 h-3.5 md:w-4 md:h-4" />
