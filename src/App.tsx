@@ -19,6 +19,7 @@ import { EventInsightsPage } from "./components/EventInsightsPage";
 import { Toaster } from "./components/ui/sonner";
 import { ProfileDetailsPage } from "./components/ProfileDetailsPage";
 import { AIInsightsPage } from "./components/AIInsightsPage";
+import AiEventFinderButton from "./components/AiEventFinderButton";
 
 type AppState = "login" | "signup" | "app";
 type AppPage = 
@@ -125,6 +126,7 @@ export default function App() {
           onNavigate={handleNavigate}
         />
       )}
+      <AiEventFinderButton onNavigate={handleNavigate} />
       <Toaster />
     </div>
   );
