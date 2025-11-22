@@ -113,7 +113,7 @@ export default function App() {
           onNavigateToPosts={() => setCurrentPage("posts")}
         />
       )}
-      {currentPage === "connection-matchmaking" && <ConnectionMatchmakingPage onBack={() => setCurrentPage("profile")} />}
+      {currentPage === "connection-matchmaking" && <ConnectionMatchmakingPage onBack={() => setCurrentPage("events")} />}
       {currentPage === "event-calendar" && <EventCalendarPage onBack={() => setCurrentPage("events")} />}
       {currentPage === "profile-analysis" && <ProfileAnalysisPage onBack={() => setCurrentPage("profile")} />}
       {currentPage === "skills-interests" && <SkillsInterestsPage onBack={() => setCurrentPage("profile")} />}
